@@ -34,12 +34,11 @@
       console.log('Confirmed...');
     })
   
-    modal.addEventListener('cacel', () => {
+    modal.addEventListener('cancel', () => {
       console.log('Cancelled...');
     })
     
     confirmButton.addEventListener('click', () => {
-    //  modal.setAttribute('opened', '');
       if(!modal.isOpen) {
         modal.open();
         console.log('...Opening');

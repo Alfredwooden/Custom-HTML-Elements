@@ -24,9 +24,13 @@ class Modal extends HTMLElement {
           pointer-events: all;
         }
 
+        :host([opened]) #modal {
+          top: 15vh;
+        }
+
         #modal {
           position: fixed;
-          top: 15vh;
+          top: 10vh;
           left: 25%;
           width: 50%;
           z-index: 100;
@@ -38,14 +42,17 @@ class Modal extends HTMLElement {
           justify-content: space-between;
           opacity: 0;
           pointer-events: none;
+          transition: all 0.2s ease-in-out;
         }
 
         header {
           padding: 1rem;
+          border-bottom: 1px solid #ddd;
         }
 
         ::slotted(h1) {
           font-size: 1.25rem;
+          margin: 0;
         }
 
         #main {
@@ -86,14 +93,17 @@ class Modal extends HTMLElement {
       console.dir(slots[1].assignedNodes());
     });
 
+    
+    const backdrop = this.shadowRoot.querySelector('#backdrop');
     const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
     const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
 
     cancelButton.addEventListener('click', this._cancel.bind(this));
     confirmButton.addEventListener('click', this._confirm.bind(this));
+    backdrop.addEventListener('click', this._cancel.bind(this));
     
     cancelButton.addEventListener('cancel', () => {
-      console.log('Cancelled inside the component');
+      this._cancel;
     })
   }
 
@@ -110,16 +120,16 @@ class Modal extends HTMLElement {
   }
 
   _cancel(event) {
-    console.log('Canceled...');
-    this.hide();
 
-    const cancelEvent = new Event('cancel');
+    this.hide();
+    const cancelEvent = new Event('cancel', { bubbles: true, composed: true });
     event.target.dispatchEvent(cancelEvent);
   }
   
   _confirm() {
-    console.log('Confirmed...');
     this.hide();
+    const confirmEvent = new Event('confirm')
+    this.dispatchEvent(confirmEvent);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
