@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "web-components-stencil": "file:../web-components-stencil-0.0.1.tgz"
   }
 }

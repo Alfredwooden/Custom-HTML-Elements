@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "web-components-stencil": "file:../web-components-stencil-0.0.1.tgz"
   },
   "scripts": {
     "start": "react-scripts start",
