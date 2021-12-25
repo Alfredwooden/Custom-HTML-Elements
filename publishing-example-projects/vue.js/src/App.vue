@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <uc-stock-price></uc-stock-price>
+      <uc-stock-finder v-if="showStockFinder"></uc-stock-finder>
+      <button @click="showStockFinder = true">Show Finder</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return { showStockFinder: false }
   }
 }
 </script>
